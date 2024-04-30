@@ -2,6 +2,7 @@ import joblib
 from sklearn.ensemble import RandomForestClassifier
 from evaluate.evaluate import evaluate_model, confusion_matrix
 
+
 class RFCModel:
     def __init__(self, n_estimators=10, max_depth=4, random_state=42):
         self.model = RandomForestClassifier(n_estimators=n_estimators, max_depth=max_depth, random_state=random_state)

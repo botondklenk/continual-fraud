@@ -1,5 +1,6 @@
 import numpy as np
-from sklearn.metrics import confusion_matrix, accuracy_score, precision_score, recall_score, f1_score
+from sklearn import metrics
+from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
 
 def evaluate_model(y_true, y_pred):
     """
@@ -33,4 +34,4 @@ def confusion_matrix(y_true, y_pred):
     Returns:
         array: Confusion matrix.
     """
-    return confusion_matrix(y_true, y_pred)
+    return metrics.confusion_matrix(y_true, y_pred)
