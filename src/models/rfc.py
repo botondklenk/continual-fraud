@@ -27,7 +27,7 @@ class RFCModel:
     def get_feature_importance(self, X_train):
         features = X_train.columns
         importance = self.model.feature_importances_
-        feature_importance = dict(zip(features, importance))
+        feature_importance = dict(sorted(zip(features, importance).items(), key=lambda item: item[1], reverse=True))
         return feature_importance
 
     def get_model(self):

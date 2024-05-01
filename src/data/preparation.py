@@ -7,7 +7,7 @@ class DataPreparation:
         self.time_feature = time_feature
         self.df = self.load_data(path)
         self.df = self.data_preprocessing()
-        self.df = self.feature_scaling()
+        #self.df = self.feature_scaling()
 
     def load_data(self, path):
         data = pd.read_csv(path)
@@ -16,7 +16,7 @@ class DataPreparation:
     # TODO: drop fraud column
     def data_preprocessing(self):
         self.drop_columns()
-        self.label_encoding()
+        #self.label_encoding()
         self.time_features()
         self.df.fillna(0, inplace=True)
         return self.df;
