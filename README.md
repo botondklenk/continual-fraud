@@ -11,7 +11,7 @@ Ezen kívül szeretnénk kipróbálni egy [szakmai cikkben](https://arxiv.org/pd
 
 Rendelkezünk előre címkézett tanítóadattal, és a tesztadatokkal is. Az adathalmazban a tranzakciók időpontja, összege, valamint a tranzakcióhoz tartozó kártya azonosítója, a kártya tulajdonosának adatai és a tranzakció sikerességének címkéje is megtalálható.
 
-[Analysis](https://htmlpreview.github.io/?https://github.com/botondklenk/continual-fraud/blob/main/docs/data_analysis.html)
+[Analysis](https://github.com/botondklenk/continual-fraud/blob/main/docs/data_analysis.html)
 
 ## Megoldások
 
