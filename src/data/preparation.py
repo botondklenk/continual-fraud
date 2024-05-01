@@ -41,3 +41,6 @@ class DataPreparation:
         self.df['age'] = ((self.df['date'] - self.df['dob']).dt.days / 365.25).astype(int)
         
         self.df.drop(columns=['trans_date_trans_time','date','dob'], axis=1, inplace=True)
+        
+    def get_feature_names(self):
+        return self.df.columns

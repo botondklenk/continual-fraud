@@ -24,7 +24,8 @@ class RFCModel:
         return metrics, cm
     
     def get_feature_importance(self, features):
-        feature_importance = dict(sorted(zip(features, self.model.feature_importances_).items(), key=lambda item: item[1], reverse=True))
+        feature_importance = dict(zip(features, self.model.feature_importances_))
+        feature_importance = dict(sorted(feature_importance.items(), key=lambda item: item[1], reverse=True))
         return feature_importance
 
     def get_model(self):
