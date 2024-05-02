@@ -20,15 +20,15 @@ A continual learninget államokra és idő alapján bontva is szeretnénk kipró
 ## Lépések
 
 - [x] Adathalmaz elemzése
-- [ ] Adatok feldolgozása
-    - [ ] Adatelőkészítés
-    - [ ] Adat betöltő osztály készítése
+- [x] Adatok feldolgozása
+    - [x] Adatelőkészítés
+    - [x] Adat betöltő osztály készítése
     - [ ] Csoportokra bontás
-    - [ ] További elemzés
-- [ ] Baseline modell kiválasztása
-- [ ] Baseline modell tanítása
-    - [ ] Dataset balancing
-- [ ] Baseline modell kiértékelése
+    - [x] További elemzés
+- [x] Baseline modell kiválasztása
+- [x] Baseline modell tanítása
+    - [x] Dataset balancing
+- [x] Baseline modell kiértékelése
 - [ ] Continual learning bevezetése
 - [ ] Modell kiértékelése continual learninggel
 - [ ] Gráf-neurál háló implementációja
