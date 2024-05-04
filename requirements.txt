@@ -7,3 +7,4 @@ gdown
 plotly
 nbformat>=4.2.0
 imbalanced-learn
+setuptools
