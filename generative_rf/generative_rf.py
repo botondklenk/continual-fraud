@@ -158,7 +158,7 @@ class FeatureGenerator:
              A newly trained random forest.
         """
         self._rf = rf
-        self._dim = rf.n_features_
+        self._dim = rf.n_features_in_
         self._counting_trees = [CountingTree(t) for t in rf.estimators_]
 
         return self

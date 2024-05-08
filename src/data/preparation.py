@@ -1,5 +1,5 @@
 import pandas as pd
-from sklearn.preprocessing import LabelEncoder
+import json
 
 high_risk_jobs = [
     'Dancer',
@@ -42,31 +42,42 @@ cols_to_drop = [
 ]
 
 class DataPreparation:
-    def fit(self, X, y=None):
-        self.LE_columns = ['merchant','city','state','job']
-        self.LE = {col: LabelEncoder().fit(pd.concat([X[col].astype(str), pd.Series(['Unknown'])])) for col in self.LE_columns}
+    def __init__(self, mapping_path='../mappings', mapping_columns=['merchant','city','state','job']):
+        self.mapping_path = mapping_path
+        self.mapping_columns = mapping_columns
+        
+    def fit(self, X=None, y=None):
+        self.load_mappings()
         return self
+    
+    def load_mappings(self): 
+        mappings = {}
+        for column in self.mapping_columns:
+            with open(f'{self.mapping_path}/mapping_{column}.json', 'r') as f:
+                mappings[column] = json.load(f)
+        self.mappings = mappings
     
     def transform(self, X):
         self.df = X.copy()
         self.time_features()
-        
-        for col in high_risk_categories:
-            self.df[col] = self.df['category'].apply(lambda x: 1 if x == col else 0)
-        
-        self.df['high_risk_job'] = self.df['job'].apply(lambda x: 1 if x in high_risk_jobs else 0)
-            
-        for col in self.LE_columns:
-            try:
-                self.df[col] = self.LE[col].transform(self.df[col])
-            except ValueError:
-                self.df[col] = self.LE[col].transform(self.df[col].map(lambda s: 'Unknown' if s not in self.LE[col].classes_ else s))
-                
+        self.create_dummies()
+        self.encode_with_mapping()           
         self.drop_columns()
         return self.df
     
     def drop_columns(self):
         self.df.drop(columns=cols_to_drop,inplace=True)
+        
+    def create_dummies(self):
+        for col in high_risk_categories:
+            self.df[col] = self.df['category'].apply(lambda x: 1 if x == col else 0)
+        
+        self.df['high_risk_job'] = self.df['job'].apply(lambda x: 1 if x in high_risk_jobs else 0)
+        
+    def encode_with_mapping(self):
+        for column in self.mapping_columns:
+            if column in self.df.columns:
+                self.df[column] = self.df[column].map(self.mappings[column])
 
     def time_features(self):
         self.df['date'] = pd.to_datetime(self.df['trans_date_trans_time'])
@@ -85,3 +96,25 @@ class DataPreparation:
         
     def get_feature_names(self):
         return self.df.columns
+    
+class ContinousDataPreparation(DataPreparation):
+    def __init__(self, mapping_path='../mappings'):
+        super().__init__(mapping_path, ['merchant','city','state','job', 'category'])
+        
+    def transform(self, X):
+        self.df = X.copy()
+        self.time_features()
+        self.encode_with_mapping()           
+        self.drop_columns()
+        return self.df
+
+    # override
+    def time_features(self):
+        self.df['date'] = pd.to_datetime
+        self.df['date'] = pd.to_datetime(self.df['trans_date_trans_time'])
+        self.df['month'] = self.df['date'].dt.month
+        self.df['day_of_week'] = self.df['date'].dt.dayofweek
+        self.df['hour'] = self.df['date'].dt.hour
+        self.df['dob'] = pd.to_datetime(self.df['dob'])
+        self.df['age'] = ((self.df['date'] - self.df['dob']).dt.days / 365.25).astype(int)
+        self.df.drop(columns=['trans_date_trans_time','date','dob'], axis=1, inplace=True)
