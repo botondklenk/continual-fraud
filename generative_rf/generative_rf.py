@@ -78,8 +78,23 @@ class CountingTree:
         right = self._count[self._tree.tree_.children_right[node_index]]
         return left / (left + right)
 
+"""
+A FeatureGenerator a döntési határok közelében lévő adatok generálásáárt felelős.
 
+Variables:
+    _scaler: StandardScaler
+        Az adatok normalizálására használt StandardScaler
+    _total_samples: int
+        Az összes eddig generált adat száma
+    _rf: RandomForestClassifier
+    _dim: int
+        Az adatok dimenziója (oszlopok száma)
+    _counting_trees: List[CountingTree] (CountingTree: Wrapper to count the number of samples in each branch of the tree)
+        A döntési fákhoz tartozó CountingTree-k listája
+"""
 class FeatureGenerator:
+
+    # inicializál egy StandardScalert
     def __init__(self) -> None:
         # we need means and stds to initialize the generated data
         self._scaler = StandardScaler()
@@ -148,6 +163,7 @@ class FeatureGenerator:
 
         return X, self._total_samples / X.shape[0]
 
+    # ezt hívjuk meg eloszor init utan, egy FeatureGenerator instance-el táér vissza
     def register(self, rf: Union[RandomForestRegressor, RandomForestClassifier]) -> "FeatureGenerator":
         """ Call this function after training your random forest, whether or not
         the forest was trained from generated data.
