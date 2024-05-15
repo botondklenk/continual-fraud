@@ -87,12 +87,12 @@ class DataPreparation:
         # self.df['minute'] = self.df['date'].dt.minute
         # self.df['second'] = self.df['date'].dt.second
         
-        self.df['unix_time'] = self.df['unix_time'] - self.df['unix_time'].min()
+        # self.df['unix_time'] = self.df['unix_time'] - self.df['unix_time'].min()
         
         self.df['dob'] = pd.to_datetime(self.df['dob'])
         self.df['age'] = ((self.df['date'] - self.df['dob']).dt.days / 365.25).astype(int)
         
-        self.df.drop(columns=['trans_date_trans_time','date','dob'], axis=1, inplace=True)
+        self.df.drop(columns=['trans_date_trans_time','date','dob','unix_time'], axis=1, inplace=True)
         
     def get_feature_names(self):
         return self.df.columns
