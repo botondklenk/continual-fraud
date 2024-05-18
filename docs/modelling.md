@@ -76,7 +76,7 @@ smote_pipeline.fit(X_train, y_train)
 
 Látható hogy a SMOTE-val tanított modellünk több csalást talál, de több hamis pozitív értéket is ad. Így a recall értéke nőtt, de a precision értéke csökkent. Ezt a valós életben az üzleti igényeknek megfelelően kell beállítani.
 
-## Rnadom Forest Continual Learning
+## Random Forest Continual Learning
 
 A folyamatos tanulást államonként bontott adathalamzon teszteltük. Két RandomForest-en alapuló módszert próbáltunk ki:
 
