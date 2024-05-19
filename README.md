@@ -11,8 +11,6 @@ Ezen kívül szeretnénk kipróbálni egy [szakmai cikkben](https://arxiv.org/pd
 
 Rendelkezünk előre címkézett tanítóadattal, és a tesztadatokkal is. Az adathalmazban a tranzakciók időpontja, összege, valamint a tranzakcióhoz tartozó kártya azonosítója, a kártya tulajdonosának adatai és a tranzakció sikerességének címkéje is megtalálható.
 
-[Analysis](https://github.com/botondklenk/continual-fraud/blob/main/docs/data_analysis.html)
-
 ## Megoldások
 
 A continual learninget államokra és idő alapján bontva is szeretnénk kipróbálni.
@@ -23,15 +21,26 @@ A continual learninget államokra és idő alapján bontva is szeretnénk kipró
 - [x] Adatok feldolgozása
     - [x] Adatelőkészítés
     - [x] Adat betöltő osztály készítése
-    - [ ] Csoportokra bontás
+    - [x] Csoportokra bontás
     - [x] További elemzés
 - [x] Baseline modell kiválasztása
 - [x] Baseline modell tanítása
     - [x] Dataset balancing
 - [x] Baseline modell kiértékelése
-- [ ] Continual learning bevezetése
-- [ ] Modell kiértékelése continual learninggel
+- [x] Continual learning bevezetése
+- [x] Modell kiértékelése continual learninggel
 - [ ] Gráf-neurál háló implementációja
 - [ ] Modell kiértékelése gráf-neurál hálóval
 - [ ] Összehasonlítás
 - [ ] Konklúzió
+
+## Méröldkövek
+
+[Analysis](https://github.com/botondklenk/continual-fraud/blob/main/docs/analysis.md)
+
+[Preparation](https://github.com/botondklenk/continual-fraud/blob/main/docs/preparation.md)
+
+[Model](https://github.com/botondklenk/continual-fraud/blob/main/docs/modelling.md)
+
+[Usage](https://github.com/botondklenk/continual-fraud/blob/main/docs/continual_fraud.md)
+
